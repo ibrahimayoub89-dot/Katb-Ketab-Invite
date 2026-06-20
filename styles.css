@@ -1,0 +1,464 @@
+/* CSS Variables & Setup */
+:root {
+    --sage-green: #8A9A5B;
+    --text-dark: #2c3e50;
+    --text-light: #f8f9fa;
+    --font-serif: 'Playfair Display', serif;
+    /* Using Brittany Signature if installed, otherwise Great Vibes */
+    --font-script: 'Brittany Signature', 'Great Vibes', cursive;
+
+    /* Sky Colors */
+    --sunset-top: #fdbb2d;
+    --sunset-bottom: #b21f1f;
+    --night-top: #0f2027;
+    --night-bottom: #203a43;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-serif);
+    background-color: #faf9f6;
+    overflow-x: hidden;
+    color: var(--text-dark);
+}
+
+/* Typography */
+.name-line {
+    font-family: var(--font-script);
+    font-size: 2.8rem;
+    font-weight: normal;
+    line-height: 1.1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ampersand {
+    font-family: var(--font-script);
+    font-size: 1.4rem;
+    display: block;
+    line-height: 1.2;
+    opacity: 0.85;
+}
+
+.names-block {
+    margin-bottom: 0.8rem;
+}
+
+.intro-line,
+.date-line {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.intro-line {
+    margin-bottom: 1.5rem;
+}
+
+/* Envelope Container */
+.envelope-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    z-index: 100;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.envelope-frame {
+    width: 100%;
+    height: 100%;
+    background-image: url('envelope_01.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    /* Zoom out a little bit from the envelopes */
+    transform: scale(1.00);
+    transition: transform 0.2s ease-out;
+    /* Mobile tap optimizations */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.envelope-frame:active {
+    transform: scale(1.00);
+}
+
+
+/* Main Invitation Container */
+.main-invitation {
+    width: 100%;
+    min-height: 100vh;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.main-invitation.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Toggle Switch */
+.toggle-container {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 10;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    transition: .4s;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+input:checked+.slider:before {
+    transform: translateX(24px);
+    background-color: #f1c40f;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Full-bleed mosque+sky background images */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+    transition: opacity 1.2s ease-in-out;
+    opacity: 0;
+    z-index: 0;
+}
+
+.hero-bg.active {
+    opacity: 1;
+}
+
+/* Invitation text floats in the sky area */
+.invitation-text {
+    text-align: center;
+    margin-top: 8vh;
+    z-index: 2;
+    padding: 0 20px;
+}
+
+/* Text color adapts to sky mode */
+.sunset-mode .invitation-text {
+    color: #3a2a1a;
+}
+
+.night-mode .invitation-text {
+    color: var(--text-light);
+}
+
+/* Gradual fade-in for each line — opacity only */
+.fade-line {
+    opacity: 0;
+    transition: opacity 1.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.fade-line.visible {
+    opacity: 1;
+}
+
+/* Scroll Hint */
+.scroll-hint {
+    position: absolute;
+    bottom: 20px;
+    z-index: 3;
+    animation: bounce 2s infinite;
+}
+
+.chevron::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    border-right: 2px solid rgba(255, 255, 255, 0.7);
+    transform: rotate(45deg);
+}
+
+.night-mode .chevron::before {
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+.sunset-mode .chevron::before {
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Countdown Section — Full screen with floral background */
+.countdown-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('floral_bg.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #fdfbf7;
+    padding: 40px 20px;
+    text-align: center;
+    transition: background-image 1.2s ease-in-out, background-color 1.2s ease-in-out;
+}
+
+.countdown-section h2 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: var(--sage-green);
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-box .number {
+    font-size: 3rem;
+    font-family: var(--font-serif);
+    color: var(--text-dark);
+}
+
+.time-box .label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+    margin-top: 4px;
+}
+
+/* Venue Section — Full screen with Islamic arch background */
+.venue-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-image: url('venue_bg.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #fdfbf7;
+    padding: 0 20px;
+    text-align: center;
+    transition: background-image 1.2s ease-in-out, background-color 1.2s ease-in-out;
+}
+
+/* "Venue" title positioned inside the arch */
+.venue-arch-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5vh;
+}
+
+.venue-title {
+    font-family: var(--font-script);
+    font-size: 4rem;
+    font-weight: normal;
+    color: var(--sage-green);
+    letter-spacing: 2px;
+}
+
+/* Mosque name and button below the arch */
+.venue-details {
+    padding-bottom: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Night mode for Countdown & Venue sections */
+.countdown-section.night-mode {
+    background-image: url('floral_bg_night.png');
+    background-color: #0f1a2e;
+}
+
+.countdown-section.night-mode h2 {
+    color: #b8c9a8;
+}
+
+.countdown-section.night-mode .time-box .number {
+    color: var(--text-light);
+}
+
+.countdown-section.night-mode .time-box .label {
+    color: #aaa;
+}
+
+.venue-section.night-mode {
+    background-image: url('venue_bg_night.png');
+    background-color: #0f1a2e;
+}
+
+.venue-section.night-mode .venue-title {
+    color: #b8c9a8;
+}
+
+.venue-section.night-mode .venue-name {
+    color: var(--text-light);
+}
+
+.venue-section.night-mode .btn-maps {
+    color: var(--text-light);
+    border-color: var(--text-light);
+}
+
+.venue-name {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+}
+
+.btn-maps {
+    display: inline-block;
+    padding: 12px 30px;
+    background: transparent;
+    color: var(--text-dark);
+    text-decoration: none;
+    border: 1px solid var(--text-dark);
+    border-radius: 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.btn-maps:hover, .btn-maps:active {
+    background: var(--sage-green);
+    color: white;
+    border-color: var(--sage-green);
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 480px) {
+    .name-line {
+        font-size: 2.2rem;
+    }
+    .ampersand {
+        font-size: 1.2rem;
+    }
+    .intro-line, .date-line {
+        font-size: 0.75rem;
+    }
+    .time-box .number {
+        font-size: 2.5rem;
+    }
+    .countdown-timer {
+        gap: 25px;
+    }
+    .venue-title {
+        font-size: 3rem;
+    }
+    .venue-name {
+        font-size: 1.1rem;
+    }
+    .btn-maps {
+        padding: 14px 35px; /* slightly larger tap target for mobile */
+    }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Katb Ketab — Basma & Ibrahim | July 18, 2026</title>
+    <meta name="description" content="You are invited to the Katb Ketab of Basma & Ibrahim — July 18, 2026 at Al-Aley Al-Azim Mosque, Almaza.">
+
+    <!-- Open Graph for link sharing previews -->
+    <meta property="og:title" content="Katb Ketab — Basma & Ibrahim">
+    <meta property="og:description" content="You are invited to celebrate with us — July 18, 2026">
+    <meta property="og:image" content="mosque_sunset.png">
+    <meta property="og:type" content="website">
+
+    <!-- Mobile browser chrome color -->
+    <meta name="theme-color" content="#c8a96e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Preload critical background images -->
+    <link rel="preload" as="image" href="envelope_01.png">
+    <link rel="preload" as="image" href="mosque_sunset.png">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Preload Images for Animation to prevent flickering -->
+    <div style="display:none;">
+        <img src="envelope_01.png">
+        <img src="envelope_02.png">
+        <img src="envelope_03.png">
+    </div>
+
+    <!-- The Envelope Experience -->
+    <div id="envelope-container" class="envelope-container">
+        <div class="envelope-frame" id="envelope-frame">
+        </div>
+    </div>
+
+    <!-- The Main Invitation Experience -->
+    <div id="main-invitation" class="main-invitation hidden">
+
+        <!-- Sky Toggle -->
+        <div class="toggle-container">
+            <label class="switch">
+                <input type="checkbox" id="sky-toggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <!-- Hero Section: Full mosque+sky image as background, text in sky area -->
+        <section class="hero-section sunset-mode" id="hero-section">
+
+            <!-- Full-bleed mosque images with extended sky -->
+            <img src="mosque_sunset.png" alt="Mosque Sunset" class="hero-bg hero-bg-sunset active">
+            <img src="mosque_night.png" alt="Mosque Night" class="hero-bg hero-bg-night">
+
+            <div class="invitation-text">
+                <p class="intro-line fade-line" data-delay="1">You are invited to the Katb Ketab of</p>
+                <div class="names-block fade-line" data-delay="0">
+                    <h1 class="name-line">Basma</h1>
+                    <span class="ampersand">&</span>
+                    <h1 class="name-line">Ibrahim</h1>
+                </div>
+                <p class="date-line fade-line" data-delay="2">July 18, 2026</p>
+            </div>
+
+            <!-- Scroll Hint -->
+            <div class="scroll-hint">
+                <div class="chevron"></div>
+            </div>
+        </section>
+
+        <!-- Countdown Screen -->
+        <section class="countdown-section">
+            <h2>Counting the days until we celebrate together</h2>
+            <div class="countdown-timer" id="countdown">
+                <div class="time-box">
+                    <span id="days" class="number">00</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="time-box">
+                    <span id="hours" class="number">00</span>
+                    <span class="label">Hours</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Venue Screen -->
+        <section class="venue-section">
+            <div class="venue-arch-content">
+                <h2 class="venue-title">Venue</h2>
+            </div>
+            <div class="venue-details">
+                <p class="venue-name">Al-Aley Al-Azim Mosque, Almaza</p>
+                <a href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwjI7e2p15aVAxUAAAAAHQAAAAAQIg..i&sca_esv=86ff06cca33c5a35&pvq=Cg0vZy8xMXg3aHZocF96&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=eg&sa=X&ftid=0x145815002cc2406f:0xe4fbaa77b1a168f4"
+                    class="btn-maps" target="_blank" rel="noopener noreferrer">Open Maps</a>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
