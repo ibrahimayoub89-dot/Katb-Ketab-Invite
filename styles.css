@@ -368,7 +368,7 @@ input:checked+.slider:before {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 5vh;
+    padding-top: 15vh;
 }
 
 .venue-title {
@@ -381,7 +381,7 @@ input:checked+.slider:before {
 
 /* Mosque name and button below the arch */
 .venue-details {
-    padding-bottom: 15vh;
+    padding-bottom: 22vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -412,7 +412,7 @@ input:checked+.slider:before {
 }
 
 .venue-section.night-mode .venue-title {
-    color: #b8c9a8;
+    color: #ffffff;
 }
 
 .venue-section.night-mode .venue-name {
