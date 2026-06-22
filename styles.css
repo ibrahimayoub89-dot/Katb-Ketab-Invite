@@ -348,6 +348,7 @@ input:checked+.slider:before {
 /* Venue Section — Full screen with Islamic arch background */
 .venue-section {
     min-height: 100vh;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -415,7 +416,9 @@ input:checked+.slider:before {
     color: #ffffff;
 }
 
-.venue-section.night-mode .venue-name {
+.venue-section.night-mode .venue-name,
+.venue-section.night-mode .venue-time,
+.venue-section.night-mode .no-kids-note {
     color: var(--text-light);
 }
 
@@ -427,6 +430,16 @@ input:checked+.slider:before {
 .venue-name {
     font-size: 1.3rem;
     color: var(--text-dark);
+}
+
+.venue-time {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+}
+
+.venue-time .time-bold {
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .btn-maps {
@@ -447,6 +460,18 @@ input:checked+.slider:before {
     background: var(--sage-green);
     color: white;
     border-color: var(--sage-green);
+}
+
+.no-kids-note {
+    position: absolute;
+    bottom: 10vh;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-dark);
+    padding: 0 20px;
 }
 
 /* Mobile Responsive Adjustments */
@@ -474,5 +499,9 @@ input:checked+.slider:before {
     }
     .btn-maps {
         padding: 14px 35px; /* slightly larger tap target for mobile */
+    }
+    .toggle-container {
+        top: 15px;
+        right: 15px;
     }
 }
